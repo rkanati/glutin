@@ -615,9 +615,9 @@ impl Context {
     pub fn swap_buffers_with_damage(&self, rects: &[Rect]) -> Result<(), ContextError> {
         let egl = EGL.as_ref().unwrap();
 
-        if !egl.SwapBuffersWithDamageKHR.is_loaded() {
-            return Err(ContextError::FunctionUnavailable);
-        }
+    //  if !egl.SwapBuffersWithDamageKHR.is_loaded() {
+    //      return Err(ContextError::FunctionUnavailable);
+    //  }
 
         let surface = self.surface.as_ref().unwrap().lock();
         if *surface == ffi::egl::NO_SURFACE {
@@ -656,8 +656,9 @@ impl Context {
 
     #[inline]
     pub fn swap_buffers_with_damage_supported(&self) -> bool {
-        let egl = EGL.as_ref().unwrap();
-        egl.SwapBuffersWithDamageKHR.is_loaded()
+        true
+    //  let egl = EGL.as_ref().unwrap();
+    //  egl.SwapBuffersWithDamageKHR.is_loaded()
     }
 
     #[inline]
